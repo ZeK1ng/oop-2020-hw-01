@@ -1,8 +1,20 @@
+
 import junit.framework.TestCase;
 
 import java.util.*;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+
+
+
+
 public class AppearancesTest extends TestCase {
+	@BeforeAll
+	public void setUp() {
+		Appearances apper = new Appearances();
+
+	}
 	// utility -- converts a string to a list with one
 	// elem for each char.
 	private List<String> stringToList(String s) {
@@ -20,7 +32,8 @@ public class AppearancesTest extends TestCase {
 		assertEquals(3, Appearances.sameCount(a, b));
 	}
 	
-	public void testSameCount2() {
+	
+	public void	testSameCount2() {
 		// basic List<Integer> cases
 		List<Integer> a = Arrays.asList(1, 2, 3, 1, 2, 3, 5);
 		assertEquals(1, Appearances.sameCount(a, Arrays.asList(1, 9, 9, 1)));

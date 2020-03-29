@@ -12,7 +12,18 @@ public class StringCode {
 	 * @return max run length
 	 */
 	public static int maxRun(String str) {
-		return 0; // YOUR CODE HERE
+		if(str.length() ==0) return 0;
+		int res=1;
+		int temp=1;
+		for(int i=0; i< str.length()-1; i++) {
+			if(str.charAt(i) == str.charAt(i+1)) {
+				temp++;
+				res= Math.max(res, temp);
+			}else {
+				temp =1;
+			}
+		}
+		return res; // YOUR CODE HERE
 	}
 
 	
@@ -24,7 +35,23 @@ public class StringCode {
 	 * @return blown up string
 	 */
 	public static String blowup(String str) {
-		return null; // YOUR CODE HERE
+		String res ="";
+		if(str.length()==0)return res;
+		
+		for(int i =0; i< str.length()-1 ; i++) {
+			char ch = str.charAt(i);
+			if(Character.isDigit(ch)) {
+				for(int k =0; k<Integer.parseInt(ch+"");k++) {
+					res+=str.charAt(i+1);
+				}
+			}else {
+				res+=str.charAt(i);
+			}
+		}
+		if(!Character.isDigit(str.charAt(str.length()-1))){
+			res+=str.charAt(str.length()-1);
+		}
+		return res;
 	}
 	
 	/**
@@ -34,6 +61,23 @@ public class StringCode {
 	 * Compute this in linear time using a HashSet. Len will be 1 or more.
 	 */
 	public static boolean stringIntersect(String a, String b, int len) {
-		return false; // YOUR CODE HERE
+		if(a.length()< len || b.length() <len)return false;
+		HashSet<String> ZeSet = new HashSet<String>();
+		if(a.length() == len) {
+			ZeSet.add(a);
+		}else {
+			for(int i =0; i< a.length()-len+1; i++) {
+				ZeSet.add(a.substring(i,i+len));
+			}		
+		}
+		if(b.length()==len) {
+			if(ZeSet.contains(b))return true;
+		}else {
+			for(int i =0; i< b.length()-len+1; i++) {
+				if(ZeSet.contains(b.substring(i,i+len))) return true;
+			}
+		}
+		return false;
 	}
+	
 }

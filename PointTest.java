@@ -23,4 +23,22 @@ public class PointTest extends TestCase {
 		assertTrue(p1.equals(new Point(p1)));
 		assertEquals(p1, p2.shiftedPoint(0, -3));
 	}
+	public void test3() {
+		Point p1 = new Point(10,20);
+		Point p2 = new Point(0,0);
+		assertEquals("10.0 20.0", p1.toString());
+		assertEquals("0.0 0.0", p2.toString());
+	}
+	
+	public void testDiffObj() {
+		Point p1 = new Point(1,1);
+		String sr  = "not Point";
+		assertFalse(p1.equals(sr));
+	}
+	public void testDiffPoints() {
+		Point p1 = new Point(19,18);
+		Point p2 = new Point(20,17);
+		assertFalse(p1.equals(p2));
+	}
+	
 }

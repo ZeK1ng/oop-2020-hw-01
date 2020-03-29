@@ -9,5 +9,6 @@ import java.util.*;
 */
 
 public class Shape {
+	
 }
 
