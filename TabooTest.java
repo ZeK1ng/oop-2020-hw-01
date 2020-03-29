@@ -56,6 +56,28 @@ public class TabooTest extends TestCase {
 		assertEquals(st, tb.noFollow(2));
 		
 	}
+	public void testNoFollow4() {
+		List<String> ruleList= new ArrayList<>();
+		ruleList.add("a");
+		ruleList.add(null);
+		ruleList.add("c");
+		ruleList.add(null);
+		ruleList.add("b");
+		ruleList.add("x");
+		Taboo<String> tb = new Taboo<String>(ruleList);
+		List<String> mlist = new ArrayList<>();
+		mlist.add("a");
+		mlist.add("c");
+		mlist.add("b");
+		mlist.add("x");
+		mlist.add("c");
+		mlist.add("a");
+		Set<String> st = new HashSet<>();
+		st.add("x");
+		assertEquals(st, tb.noFollow("b"));
+		assertTrue(tb.noFollow("a").isEmpty());
+		assertTrue(tb.noFollow(null).isEmpty());
+	}
 	public void testReduce() {
 		List<String> ruleList= new ArrayList<>();
 		Taboo<String> tb = new Taboo<String>(ruleList);
@@ -115,6 +137,27 @@ public class TabooTest extends TestCase {
 		resultList.add("a");
 		tb.reduce(mlist);
 		assertEquals(resultList,mlist );
-		
+	}
+	public void testReduce3() {
+		List<String> ruleList= new ArrayList<>();
+		ruleList.add(null);
+		ruleList.add(null);
+		Taboo<String> tb = new Taboo<String>(ruleList);
+		List<String> mlist = new ArrayList<>();
+		mlist.add("a");
+		mlist.add("c");
+		mlist.add("b");
+		mlist.add("x");
+		mlist.add("c");
+		mlist.add("a");
+		List<String> resultList = new ArrayList<>();
+		resultList.add("a");
+		resultList.add("c");
+		resultList.add("b");
+		resultList.add("x");
+		resultList.add("c");
+		resultList.add("a");
+		tb.reduce(mlist);
+		assertEquals(resultList,mlist );
 	}
 }

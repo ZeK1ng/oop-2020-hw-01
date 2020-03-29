@@ -42,10 +42,13 @@ public class Taboo<T> {
 	 * @return elements which should not follow the given element
 	 */
 	public Set<T> noFollow(T elem) {
+		if(elem == null) return Collections.emptySet();
 		Set<T> ZeSet = new HashSet<>();
 		for(int i= 1; i < myTaboo.size();i++) {
-			if(myTaboo.get(i-1).equals(elem)) {
-				ZeSet.add(myTaboo.get(i));
+			if(myTaboo.get(i-1) != null && myTaboo.get(i)!= null) {
+				if(myTaboo.get(i-1).equals(elem)) {
+					ZeSet.add(myTaboo.get(i));
+				}
 			}
 		}
 		if(ZeSet.size() == 0) return Collections.emptySet();
